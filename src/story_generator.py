@@ -56,7 +56,8 @@ class StoryGenerator:
         self,
         model_name: str = "gpt2",
         device: Optional[str] = None,
-        seed: Optional[int] = 42
+        seed: Optional[int] = 42,
+        use_quantization: bool = False
     ):
         """
         Initialize the story generator.
@@ -65,8 +66,10 @@ class StoryGenerator:
             model_name: Name of the pretrained model to use
             device: Device to run the model on ('cuda', 'mps', 'cpu', or None for auto)
             seed: Random seed for reproducibility
+            use_quantization: Enable 8-bit quantization for reduced memory (CPU only)
         """
         self.model_name = self.AVAILABLE_MODELS.get(model_name, model_name)
+        self.use_quantization = use_quantization
         
         # Set device
         if device is None:
@@ -94,7 +97,20 @@ class StoryGenerator:
         logger.info(f"Loading model: {self.model_name}")
         
         self.tokenizer = AutoTokenizer.from_pretrained(self.model_name)
-        self.model = AutoModelForCausalLM.from_pretrained(self.model_name)
+        
+        # Load with quantization if enabled
+        if self.use_quantization and self.device == "cpu":
+            logger.info("Loading model with dynamic quantization for efficiency...")
+            self.model = AutoModelForCausalLM.from_pretrained(self.model_name)
+            # Apply dynamic quantization for faster CPU inference
+            self.model = torch.quantization.quantize_dynamic(
+                self.model,
+                {torch.nn.Linear},
+                dtype=torch.qint8
+            )
+            logger.info("Quantization applied successfully")
+        else:
+            self.model = AutoModelForCausalLM.from_pretrained(self.model_name)
         
         # Set padding token
         if self.tokenizer.pad_token is None:
