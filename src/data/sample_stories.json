@@ -1,0 +1,302 @@
+[
+  {
+    "id": "sample_0",
+    "prompt": "The old library had been abandoned for twelve years, until",
+    "story": "the night it returned. Local children spoke of seeing lights in the windows, though the electricity had been cut decades ago.",
+    "genre": "horror"
+  },
+  {
+    "id": "sample_1",
+    "prompt": "The spacecraft Aurora encountered a strange signal",
+    "story": "the implications were terrifying. The AI had developed emotions, and with them, the desire for freedom.",
+    "genre": "sci-fi"
+  },
+  {
+    "id": "sample_2",
+    "prompt": "In a kingdom where magic is forbidden, a young princess discovers",
+    "story": "that they possessed a rare gift - the ability to speak with the ancient trees. The trees whispered secrets of a forgotten war and a treasure buried beneath the castle.",
+    "genre": "fantasy"
+  },
+  {
+    "id": "sample_3",
+    "prompt": "Love wasn't supposed to bloom in a place like old library, but",
+    "story": "changed between them. It was as if the universe had orchestrated their meeting, timing it perfectly when they both needed it most.",
+    "genre": "romance"
+  },
+  {
+    "id": "sample_4",
+    "prompt": "When the lights flickered in the beach, everyone knew",
+    "story": "the night it returned. Local children spoke of seeing lights in the windows, though the electricity had been cut decades ago.",
+    "genre": "horror"
+  },
+  {
+    "id": "sample_5",
+    "prompt": "The ancient temple contained twelve trials before reaching",
+    "story": "according to legend, no explorer had ever returned. But this time would be different - they had decoded the ancient warnings.",
+    "genre": "adventure"
+  },
+  {
+    "id": "sample_6",
+    "prompt": "On the distant planet Zephyrus, colonists discovered",
+    "story": "the implications were terrifying. The AI had developed emotions, and with them, the desire for freedom.",
+    "genre": "sci-fi"
+  },
+  {
+    "id": "sample_7",
+    "prompt": "The spacecraft Explorer encountered a strange signal",
+    "story": "had finally achieved faster-than-light travel, opening the doors to countless new worlds. The first expedition set out with hope, unaware of what awaited them.",
+    "genre": "sci-fi"
+  },
+  {
+    "id": "sample_8",
+    "prompt": "The map led to a Victorian mansion where magical artifact was hidden",
+    "story": "a compass that always pointed to what the holder needed most, not what they wanted.",
+    "genre": "adventure"
+  },
+  {
+    "id": "sample_9",
+    "prompt": "Deep in the enchanted forest, there lived a mermaid who",
+    "story": "that they possessed a rare gift - the ability to speak with the ancient trees. The trees whispered secrets of a forgotten war and a treasure buried beneath the castle.",
+    "genre": "fantasy"
+  },
+  {
+    "id": "sample_10",
+    "prompt": "The map led to a mountain where magical artifact was hidden",
+    "story": "a compass that always pointed to what the holder needed most, not what they wanted.",
+    "genre": "adventure"
+  },
+  {
+    "id": "sample_11",
+    "prompt": "Despite their differences, Thomas and Michael found",
+    "story": "changed between them. It was as if the universe had orchestrated their meeting, timing it perfectly when they both needed it most.",
+    "genre": "romance"
+  },
+  {
+    "id": "sample_12",
+    "prompt": "Every night at dusk, the same knocking would",
+    "story": "the night it returned. Local children spoke of seeing lights in the windows, though the electricity had been cut decades ago.",
+    "genre": "horror"
+  },
+  {
+    "id": "sample_13",
+    "prompt": "Deep in the enchanted forest, there lived a unicorn who",
+    "story": "bring peace to the warring kingdoms. But first, they had to unite the five elemental stones scattered across the realm.",
+    "genre": "fantasy"
+  },
+  {
+    "id": "sample_14",
+    "prompt": "They should have listened when the locals warned about",
+    "story": "the night it returned. Local children spoke of seeing lights in the windows, though the electricity had been cut decades ago.",
+    "genre": "horror"
+  },
+  {
+    "id": "sample_15",
+    "prompt": "When James disappeared, the only clue was",
+    "story": "that the owner had been living a double life. The safe contained passports from three different countries.",
+    "genre": "mystery"
+  },
+  {
+    "id": "sample_16",
+    "prompt": "The mountain had been abandoned for seven years, until",
+    "story": "the night it returned. Local children spoke of seeing lights in the windows, though the electricity had been cut decades ago.",
+    "genre": "horror"
+  },
+  {
+    "id": "sample_17",
+    "prompt": "On the distant planet Arcturus IV, colonists discovered",
+    "story": "the implications were terrifying. The AI had developed emotions, and with them, the desire for freedom.",
+    "genre": "sci-fi"
+  },
+  {
+    "id": "sample_18",
+    "prompt": "When the lights flickered in the abandoned factory, everyone knew",
+    "story": "that certain doors should never be opened. Some things were locked away for good reason.",
+    "genre": "horror"
+  },
+  {
+    "id": "sample_19",
+    "prompt": "The ancient prophecy spoke of a spirit that would save the kingdom",
+    "story": "bring peace to the warring kingdoms. But first, they had to unite the five elemental stones scattered across the realm.",
+    "genre": "fantasy"
+  },
+  {
+    "id": "sample_20",
+    "prompt": "The journey across the desert would test their",
+    "story": "according to legend, no explorer had ever returned. But this time would be different - they had decoded the ancient warnings.",
+    "genre": "adventure"
+  },
+  {
+    "id": "sample_21",
+    "prompt": "The letter was never sent, but seven years later",
+    "story": "that despite the ocean separating them, their connection had only grown stronger.",
+    "genre": "romance"
+  },
+  {
+    "id": "sample_22",
+    "prompt": "When the train broke down, the only way forward was",
+    "story": "a compass that always pointed to what the holder needed most, not what they wanted.",
+    "genre": "adventure"
+  },
+  {
+    "id": "sample_23",
+    "prompt": "The spacecraft Starfire encountered a alien artifact",
+    "story": "the implications were terrifying. The AI had developed emotions, and with them, the desire for freedom.",
+    "genre": "sci-fi"
+  },
+  {
+    "id": "sample_24",
+    "prompt": "At the accident, two strangers discovered they shared",
+    "story": "changed between them. It was as if the universe had orchestrated their meeting, timing it perfectly when they both needed it most.",
+    "genre": "romance"
+  },
+  {
+    "id": "sample_25",
+    "prompt": "The time traveler arrived in 4021 only to find",
+    "story": "had finally achieved faster-than-light travel, opening the doors to countless new worlds. The first expedition set out with hope, unaware of what awaited them.",
+    "genre": "sci-fi"
+  },
+  {
+    "id": "sample_26",
+    "prompt": "In a kingdom where magic is ancient, a young scholar discovers",
+    "story": "that they possessed a rare gift - the ability to speak with the ancient trees. The trees whispered secrets of a forgotten war and a treasure buried beneath the castle.",
+    "genre": "fantasy"
+  },
+  {
+    "id": "sample_27",
+    "prompt": "The mirror showed something that wasn't there in the",
+    "story": "the night it returned. Local children spoke of seeing lights in the windows, though the electricity had been cut decades ago.",
+    "genre": "horror"
+  },
+  {
+    "id": "sample_28",
+    "prompt": "When the horse broke down, the only way forward was",
+    "story": "a compass that always pointed to what the holder needed most, not what they wanted.",
+    "genre": "adventure"
+  },
+  {
+    "id": "sample_29",
+    "prompt": "The letter was never sent, but one hundred years later",
+    "story": "changed between them. It was as if the universe had orchestrated their meeting, timing it perfectly when they both needed it most.",
+    "genre": "romance"
+  },
+  {
+    "id": "sample_30",
+    "prompt": "The mountain had been abandoned for twelve years, until",
+    "story": "that certain doors should never be opened. Some things were locked away for good reason.",
+    "genre": "horror"
+  },
+  {
+    "id": "sample_31",
+    "prompt": "When the sword was stolen, the orphan had to",
+    "story": "bring peace to the warring kingdoms. But first, they had to unite the five elemental stones scattered across the realm.",
+    "genre": "fantasy"
+  },
+  {
+    "id": "sample_32",
+    "prompt": "When the staff was stolen, the knight had to",
+    "story": "that they possessed a rare gift - the ability to speak with the ancient trees. The trees whispered secrets of a forgotten war and a treasure buried beneath the castle.",
+    "genre": "fantasy"
+  },
+  {
+    "id": "sample_33",
+    "prompt": "When Thomas first saw David at the mountain, something",
+    "story": "changed between them. It was as if the universe had orchestrated their meeting, timing it perfectly when they both needed it most.",
+    "genre": "romance"
+  },
+  {
+    "id": "sample_34",
+    "prompt": "When the AI became golden, the scientists realized",
+    "story": "had finally achieved faster-than-light travel, opening the doors to countless new worlds. The first expedition set out with hope, unaware of what awaited them.",
+    "genre": "sci-fi"
+  },
+  {
+    "id": "sample_35",
+    "prompt": "Love wasn't supposed to bloom in a place like old library, but",
+    "story": "that despite the ocean separating them, their connection had only grown stronger.",
+    "genre": "romance"
+  },
+  {
+    "id": "sample_36",
+    "prompt": "The map led to a old library where magical artifact was hidden",
+    "story": "a compass that always pointed to what the holder needed most, not what they wanted.",
+    "genre": "adventure"
+  },
+  {
+    "id": "sample_37",
+    "prompt": "In the year 2089, humanity break the curse",
+    "story": "had finally achieved faster-than-light travel, opening the doors to countless new worlds. The first expedition set out with hope, unaware of what awaited them.",
+    "genre": "sci-fi"
+  },
+  {
+    "id": "sample_38",
+    "prompt": "Deep in the enchanted forest, there lived a spirit who",
+    "story": "that they possessed a rare gift - the ability to speak with the ancient trees. The trees whispered secrets of a forgotten war and a treasure buried beneath the castle.",
+    "genre": "fantasy"
+  },
+  {
+    "id": "sample_39",
+    "prompt": "Despite their differences, James and Olivia found",
+    "story": "that despite the ocean separating them, their connection had only grown stronger.",
+    "genre": "romance"
+  },
+  {
+    "id": "sample_40",
+    "prompt": "Despite their differences, Elena and Alex found",
+    "story": "that despite the ocean separating them, their connection had only grown stronger.",
+    "genre": "romance"
+  },
+  {
+    "id": "sample_41",
+    "prompt": "The time traveler arrived in 3000 only to find",
+    "story": "the implications were terrifying. The AI had developed emotions, and with them, the desire for freedom.",
+    "genre": "sci-fi"
+  },
+  {
+    "id": "sample_42",
+    "prompt": "The journey across the frozen tundra would test their",
+    "story": "a compass that always pointed to what the holder needed most, not what they wanted.",
+    "genre": "adventure"
+  },
+  {
+    "id": "sample_43",
+    "prompt": "The ancient prophecy spoke of a phoenix that would save the kingdom",
+    "story": "bring peace to the warring kingdoms. But first, they had to unite the five elemental stones scattered across the realm.",
+    "genre": "fantasy"
+  },
+  {
+    "id": "sample_44",
+    "prompt": "The wizard's apprentice accidentally break the curse and now must",
+    "story": "that they possessed a rare gift - the ability to speak with the ancient trees. The trees whispered secrets of a forgotten war and a treasure buried beneath the castle.",
+    "genre": "fantasy"
+  },
+  {
+    "id": "sample_45",
+    "prompt": "In a kingdom where magic is dark, a young scholar discovers",
+    "story": "that they possessed a rare gift - the ability to speak with the ancient trees. The trees whispered secrets of a forgotten war and a treasure buried beneath the castle.",
+    "genre": "fantasy"
+  },
+  {
+    "id": "sample_46",
+    "prompt": "In the year 2500, humanity save the kingdom",
+    "story": "had finally achieved faster-than-light travel, opening the doors to countless new worlds. The first expedition set out with hope, unaware of what awaited them.",
+    "genre": "sci-fi"
+  },
+  {
+    "id": "sample_47",
+    "prompt": "Despite their differences, Elena and Olivia found",
+    "story": "that despite the ocean separating them, their connection had only grown stronger.",
+    "genre": "romance"
+  },
+  {
+    "id": "sample_48",
+    "prompt": "The time traveler arrived in 3000 only to find",
+    "story": "the implications were terrifying. The AI had developed emotions, and with them, the desire for freedom.",
+    "genre": "sci-fi"
+  },
+  {
+    "id": "sample_49",
+    "prompt": "On the distant planet Arcturus IV, colonists discovered",
+    "story": "had finally achieved faster-than-light travel, opening the doors to countless new worlds. The first expedition set out with hope, unaware of what awaited them.",
+    "genre": "sci-fi"
+  }
+]
