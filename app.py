@@ -8,14 +8,24 @@ Features:
 - Parameter adjustment
 - Ethical analysis display
 - Explainability visualization
+
+Compatibility: Works with Gradio 3.x and 4.x
 """
 
 import gradio as gr
 import sys
 import os
+import warnings
+
+# Suppress warnings for cleaner output
+warnings.filterwarnings('ignore')
 
 # Add src to path
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'src'))
+
+# Check Gradio version for compatibility
+GRADIO_VERSION = tuple(map(int, gr.__version__.split('.')[:2]))
+print(f"📦 Gradio version: {gr.__version__}")
 
 from src.storyteller import EthicalStoryTeller
 from src.ethical_filter import EthicalFilter
