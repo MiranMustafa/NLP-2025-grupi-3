@@ -176,11 +176,12 @@ def generate_story(
 def continue_story(
     current_story: str,
     continuation_length: int,
-    temperature: float
+    temperature: float,
+    model_choice: str
 ):
     """Continue an existing story."""
     try:
-        st = get_storyteller()
+        st = get_storyteller(model_choice)
         
         result = st.continue_story(
             story_so_far=current_story,
@@ -194,10 +195,10 @@ def continue_story(
         return f"Error continuing story: {str(e)}"
 
 
-def explain_next_token(text: str):
+def explain_next_token(text: str, model_choice: str):
     """Explain what the model predicts next."""
     try:
-        st = get_storyteller()
+        st = get_storyteller(model_choice)
         
         explanation = st.explain_generation(text, num_trace_tokens=5)
         next_token = explanation['next_token']
@@ -225,10 +226,10 @@ def explain_next_token(text: str):
         return f"Error explaining: {str(e)}"
 
 
-def visualize_attention(text: str, layer: int):
+def visualize_attention(text: str, layer: int, model_choice: str):
     """Generate an attention heatmap figure."""
     try:
-        st = get_storyteller()
+        st = get_storyteller(model_choice)
         fig = st.visualize_attention(text, layer=layer)
         return fig
     except Exception as e:
@@ -237,10 +238,10 @@ def visualize_attention(text: str, layer: int):
         return None
 
 
-def visualize_token_importance(text: str):
+def visualize_token_importance(text: str, model_choice: str):
     """Generate a token-importance bar chart figure."""
     try:
-        st = get_storyteller()
+        st = get_storyteller(model_choice)
         importance = st.analyze_token_importance(text)
         fig = st.token_analyzer.plot_token_importance(importance)
         return fig
@@ -320,34 +321,47 @@ def create_interface():
         - 🔒 Content safety filtering
         - 🔍 Bias detection
         - 💡 Explainable AI
-        
-        ---
         """)
+        
+        # Global model selector
+        available_models = get_available_models()
+        model_choices = list(available_models.keys())
+        
+        # Default to first fine-tuned model if available
+        default_model = model_choices[0]
+        for m in model_choices:
+            if m.startswith("models/"):
+                default_model = m
+                break
+        
+        with gr.Row():
+            global_model_dropdown = gr.Dropdown(
+                choices=model_choices,
+                value=default_model,
+                label="🤖 Select Model (applies to all features)",
+                info="Choose base GPT-2 or fine-tuned models",
+                scale=3
+            )
+            model_status = gr.Markdown(f"**Current**: {available_models.get(default_model, default_model)}", scale=2)
+        
+        # Update status when model changes
+        def update_model_status(model):
+            desc = available_models.get(model, model)
+            return f"**Current**: {desc}"
+        
+        global_model_dropdown.change(
+            fn=update_model_status,
+            inputs=[global_model_dropdown],
+            outputs=[model_status]
+        )
+        
+        gr.Markdown("---")
         
         with gr.Tabs():
             # Tab 1: Story Generation
             with gr.TabItem("📖 Generate Story"):
                 with gr.Row():
                     with gr.Column(scale=1):
-                        # Model selection dropdown
-                        available_models = get_available_models()
-                        model_choices = list(available_models.keys())
-                        model_labels = [f"{available_models[m]}" for m in model_choices]
-                        
-                        # Default to first fine-tuned model if available
-                        default_model = model_choices[0]
-                        for m in model_choices:
-                            if m.startswith("models/"):
-                                default_model = m
-                                break
-                        
-                        model_dropdown = gr.Dropdown(
-                            choices=model_choices,
-                            value=default_model,
-                            label="🤖 Select Model",
-                            info="Choose base GPT-2 or fine-tuned models"
-                        )
-                        
                         genre_dropdown = gr.Dropdown(
                             choices=[
                                 "None (Custom Prompt)",
@@ -425,7 +439,7 @@ def create_interface():
                     inputs=[
                         prompt_input,
                         genre_dropdown,
-                        model_dropdown,
+                        global_model_dropdown,
                         max_length,
                         temperature,
                         top_p,
@@ -467,7 +481,7 @@ def create_interface():
                 
                 continue_btn.click(
                     fn=continue_story,
-                    inputs=[current_story_input, cont_length, cont_temp],
+                    inputs=[current_story_input, cont_length, cont_temp, global_model_dropdown],
                     outputs=continued_output
                 )
             
@@ -499,12 +513,12 @@ def create_interface():
                 importance_plot = gr.Plot(label="📊 Token Importance")
                 
                 explain_btn.click(
-                    fn=lambda text, layer: (
-                        explain_next_token(text),
-                        visualize_attention(text, int(layer)),
-                        visualize_token_importance(text)
+                    fn=lambda text, layer, model: (
+                        explain_next_token(text, model),
+                        visualize_attention(text, int(layer), model),
+                        visualize_token_importance(text, model)
                     ),
-                    inputs=[explain_input, explain_layer],
+                    inputs=[explain_input, explain_layer, global_model_dropdown],
                     outputs=[explain_output, attention_plot, importance_plot]
                 )
             

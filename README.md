@@ -38,7 +38,7 @@ This project implements an AI story generation system that integrates:
 - **Ethical Filtering**: Multi-layer content safety detection (Detoxify + regex patterns)
 - **Bias Detection**: Gender and profession stereotype identification
 - **Explainability**: Attention visualization and token importance analysis
-- **Interactive Interface**: Real-time Gradio web application
+- **Interactive Interface**: Real-time Gradio web application with dynamic model switching
 
 ### Project Goals
 
@@ -132,7 +132,7 @@ Genres:               6 (fantasy, sci-fi, mystery, adventure, romance, horror)
 | `explainability` | `src/explainability.py` | Attention visualization, token importance |
 | `evaluate` | `src/evaluate.py` | Evaluation metrics (PPL, safety, bias) |
 | `storyteller` | `src/storyteller.py` | Main orchestrator |
-| `app` | `app.py` | Gradio web interface |
+| `app` | `app.py` | Gradio web interface with model selection |
 
 ---
 
@@ -260,6 +260,35 @@ TrainingConfig(
 
 ---
 
+## 🖥️ Web Interface
+
+The Gradio interface provides a user-friendly way to interact with the system:
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│  🌟 Ethical AI Storyteller                                  │
+│                                                             │
+│  🤖 Select Model: [Global dropdown - applies to all tabs]  │
+│     Current: Fine-tuned: Writing Prompts (Creative)         │
+│  ───────────────────────────────────────────────────────── │
+│                                                             │
+│  [📖 Generate] [📝 Continue] [🔍 Explain] [🔒 Safety]      │
+│                                                             │
+│  ┌─────────────────────────────────────────────────────┐   │
+│  │  Tab content with genre selection, parameters,      │   │
+│  │  story output, analysis, and visualizations         │   │
+│  └─────────────────────────────────────────────────────┘   │
+└─────────────────────────────────────────────────────────────┘
+```
+
+**Key Features:**
+- **Global Model Selector**: Switch between models without restarting
+- **Dynamic Loading**: Models are loaded on-demand and cached
+- **Multi-tab Interface**: Separate tabs for different functionalities
+- **Real-time Analysis**: Safety ratings and bias detection on generated content
+
+---
+
 ## 🚀 Installation & Usage
 
 ### Prerequisites
@@ -328,6 +357,19 @@ python app.py
 # Open http://localhost:7860
 ```
 
+**Features:**
+- 🤖 **Model Selection**: Choose from base GPT-2 models or fine-tuned variants
+- 📖 **Story Generation**: Create stories with genre selection and parameter tuning
+- 📝 **Continue Story**: Extend existing narratives
+- 🔍 **Explainability**: View attention heatmaps and token importance
+- 🔒 **Safety Check**: Analyze content for toxicity and bias
+
+**Available Models in UI:**
+| Type | Models |
+|------|--------|
+| Base | GPT-2, GPT-2 Medium, GPT-2 Large, DistilGPT-2 |
+| Fine-tuned | Writing Prompts, Tiny Stories, Fairy Tales, Local Dataset |
+
 #### 4. Evaluation
 
 ```bash
@@ -347,6 +389,30 @@ python benchmark_throughput.py
 python export_results.py
 # Results saved to results/
 ```
+
+This generates datasets and evaluation results for submission:
+
+```
+results/
+├── datasets/
+│   ├── training_data.json      # 50 training examples
+│   └── training_data.csv       # CSV format
+├── generated_stories/
+│   ├── generated_stories.json  # 20 AI-generated stories with analysis
+│   └── generated_stories.csv   # CSV format
+└── evaluation/
+    ├── evaluation_summary.json # Safety/bias metrics
+    ├── evaluation_report.txt   # Human-readable report
+    ├── model_comparison.json   # Perplexity comparison
+    ├── throughput_benchmark.json # Speed benchmarks
+    └── ablation_study.json     # Filter effectiveness
+```
+
+**Exported Data Includes:**
+- Training data (50 stories across 6 genres)
+- Generated stories with safety ratings and bias flags
+- Evaluation metrics (perplexity, safe ratio, bias ratio)
+- Benchmark results (throughput, ablation study)
 
 ---
 
@@ -374,10 +440,11 @@ NLP-2025-grupi-3/
 │   ├── finetuned-writing_prompts/
 │   └── finetuned-fairy_tales/
 │
-├── results/                    # Exported results
-│   ├── datasets/               # Training data exports
-│   ├── generated_stories/      # Generated story samples
-│   └── evaluation/             # Metrics and benchmarks
+├── results/                    # Exported results (run export_results.py)
+│   ├── README.md               # Results documentation
+│   ├── datasets/               # Training data (JSON/CSV)
+│   ├── generated_stories/      # AI-generated samples with analysis
+│   └── evaluation/             # Metrics, benchmarks, ablation study
 │
 ├── src/                        # Source code
 │   ├── dataset.py              # Dataset loading
