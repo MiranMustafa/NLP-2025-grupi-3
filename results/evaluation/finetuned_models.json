@@ -1,0 +1,34 @@
+[
+  {
+    "name": "finetuned-storyteller",
+    "path": "models/finetuned-storyteller/final",
+    "architecture": "GPT2LMHeadModel",
+    "vocab_size": 50257,
+    "n_layer": 12,
+    "n_head": 12
+  },
+  {
+    "name": "finetuned-writing_prompts",
+    "path": "models/finetuned-writing_prompts/final",
+    "architecture": "GPT2LMHeadModel",
+    "vocab_size": 50257,
+    "n_layer": 12,
+    "n_head": 12
+  },
+  {
+    "name": "finetuned-fairy_tales",
+    "path": "models/finetuned-fairy_tales/final",
+    "architecture": "GPT2LMHeadModel",
+    "vocab_size": 50257,
+    "n_layer": 12,
+    "n_head": 12
+  },
+  {
+    "name": "finetuned-tiny_stories",
+    "path": "models/finetuned-tiny_stories/final",
+    "architecture": "GPT2LMHeadModel",
+    "vocab_size": 50257,
+    "n_layer": 12,
+    "n_head": 12
+  }
+]
