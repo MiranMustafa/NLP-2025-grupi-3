@@ -78,6 +78,69 @@ def benchmark_model(model_name: str, device: str, num_runs: int = 5, max_tokens:
     return avg_throughput
 
 
+def main():
+    print("=" * 60)
+    print("🚀 THROUGHPUT BENCHMARK - Ethical AI Storyteller")
+    print("=" * 60)
+    
+    # Detect available device
+    if torch.cuda.is_available():
+        gpu_device = "cuda"
+        gpu_name = torch.cuda.get_device_name(0)
+    elif torch.backends.mps.is_available():
+        gpu_device = "mps"
+        gpu_name = "Apple Silicon (MPS)"
+    else:
+        gpu_device = None
+        gpu_name = None
+    
+    print(f"\n📱 Detected devices:")
+    print(f"  - CPU: Available")
+    if gpu_device:
+        print(f"  - GPU: {gpu_name} ({gpu_device})")
+    else:
+        print(f"  - GPU: Not available")
+    
+    models = ["gpt2", "distilgpt2"]
+    results = {}
+    
+    
+    
+    # Print summary table
+    print("\n" + "=" * 60)
+    print("📊 THROUGHPUT RESULTS (tokens/s)")
+    print("=" * 60)
+    print(f"{'Model':<20} {'CPU':<15} {'GPU':<15}")
+    print("-" * 50)
+    
+    for model_name in models:
+        cpu = results[model_name].get("cpu", 0)
+        gpu = results[model_name].get("gpu", 0)
+        gpu_str = f"{gpu:.1f}" if gpu else "N/A"
+        print(f"{model_name:<20} {cpu:.1f}{'':>9} {gpu_str}")
+    
+    # Save results
+    import json
+    output = {
+        "benchmark_date": time.strftime("%Y-%m-%d %H:%M:%S"),
+        "device_info": {
+            "cpu": "Available",
+            "gpu": gpu_name if gpu_device else "Not available",
+            "gpu_type": gpu_device
+        },
+        "results": results,
+        "config": {
+            "num_runs_cpu": 3,
+            "num_runs_gpu": 5,
+            "max_tokens_cpu": 50,
+            "max_tokens_gpu": 100
+        }
+    }
+    
+    with open("results/evaluation/throughput_benchmark.json", "w") as f:
+        json.dump(output, f, indent=2)
+    
+    print(f"\n💾 Results saved to results/evaluation/throughput_benchmark.json")
 
 
 if __name__ == "__main__":
