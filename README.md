@@ -488,13 +488,13 @@ python -m pytest tests/test_ethical_filter.py -v
 
 ## 📚 References
 
-1. A. Radford et al., "Language Models are Unsupervised Multitask Learners," OpenAI, 2019.
-2. T. Brown et al., "Language Models are Few-Shot Learners," NeurIPS, 2020.
-3. L. Hanu and Unitary Team, "Detoxify," GitHub, 2020.
-4. E. Bender et al., "On the Dangers of Stochastic Parrots," FAccT, 2021.
-5. T. Bolukbasi et al., "Man is to Computer Programmer as Woman is to Homemaker?" NeurIPS, 2016.
-6. T. Wolf et al., "Transformers: State-of-the-Art NLP," EMNLP, 2020.
-7. J. Vig, "A Multiscale Visualization of Attention in the Transformer Model," ACL Demo, 2019.
+For full academic references and citations, see the IEEE paper: [paper/IEEE_paper.tex](paper/IEEE_paper.tex)
+
+**Key Technologies Used:**
+- [GPT-2](https://openai.com/research/gpt-2) - OpenAI's language model
+- [Hugging Face Transformers](https://huggingface.co/transformers) - Model library
+- [Detoxify](https://github.com/unitaryai/detoxify) - Toxicity detection
+- [Gradio](https://gradio.app/) - Web interface framework
 
 ---
 
