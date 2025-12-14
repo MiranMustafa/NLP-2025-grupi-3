@@ -99,7 +99,15 @@ We use causal language modeling for next-token prediction. During inference, we 
 \subsection{Safety and bias objectives}
 We treat safety as a post-generation constraint. Given a generated candidate \(y\), we compute:
 \[
-\text{rating}(y) = f_{\text{safety}}(y;\tau) \in \{\text{Safe},\text{Mild},\text{Moderate},\text{Restricted},\text{Blocked}\}
+\text{rating}(y) = f_{\text{safety}}(y;\tau) \in \left\{
+\begin{array}{l}
+\text{Safe}\\
+\text{Mild}\\
+\text{Moderate}\\
+\text{Restricted}\\
+\text{Blocked}
+\end{array}
+\right\}
 \]
 and a bias indicator \(b(y)=\mathbb{1}[f_{\text{bias}}(y)=\text{biased}]\). The system can optionally re-generate if \(\text{rating}(y)\) is unacceptable.
 
@@ -283,7 +291,10 @@ We expose three complementary interpretation methods:
 
 \textbf{Leave-One-Out Token Importance:} Measures each token's contribution by computing the KL divergence between baseline and masked predictions:
 \[
-\text{importance}(t_i) = D_{KL}(P_{\text{baseline}} \| P_{\text{masked}}) = \sum P_{\text{baseline}} \cdot \log \frac{P_{\text{baseline}}}{P_{\text{masked}}}
+\text{importance}(t_i) = D_{KL}(P_{\text{baseline}} \| P_{\text{masked}})
+\]
+\[
+= \sum P_{\text{baseline}} \cdot \log \frac{P_{\text{baseline}}}{P_{\text{masked}}}
 \]
 
 \textbf{Gradient-Based Importance:} Alternative method using embedding gradients:
