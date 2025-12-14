@@ -104,7 +104,22 @@ def main():
     models = ["gpt2", "distilgpt2"]
     results = {}
     
-    
+    for model_name in models:
+        results[model_name] = {}
+        
+        # Benchmark on CPU
+        print(f"\n{'='*40}")
+        print(f"Testing {model_name} on CPU...")
+        cpu_throughput = benchmark_model(model_name, "cpu", num_runs=3, max_tokens=50)
+        results[model_name]["cpu"] = cpu_throughput
+        print(f"✅ {model_name} CPU: {cpu_throughput:.1f} tokens/s")
+        
+        # Benchmark on GPU if available
+        if gpu_device:
+            print(f"\nTesting {model_name} on {gpu_device.upper()}...")
+            gpu_throughput = benchmark_model(model_name, gpu_device, num_runs=5, max_tokens=100)
+            results[model_name]["gpu"] = gpu_throughput
+            print(f"✅ {model_name} GPU: {gpu_throughput:.1f} tokens/s")
     
     # Print summary table
     print("\n" + "=" * 60)
