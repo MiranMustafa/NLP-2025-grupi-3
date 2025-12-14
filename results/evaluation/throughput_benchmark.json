@@ -1,0 +1,27 @@
+{
+  "benchmark_date": "2025-12-13",
+  "device_info": {
+    "cpu": "Available",
+    "gpu": "Apple Silicon (MPS)",
+    "gpu_type": "mps",
+    "note": "MPS is slower than CPU for small models due to kernel overhead"
+  },
+  "results": {
+    "gpt2": {
+      "cpu": 79.1,
+      "gpu": 62.0
+    },
+    "distilgpt2": {
+      "cpu": 114.8,
+      "gpu": 75.9
+    }
+  },
+  "config": {
+    "num_runs_cpu": 3,
+    "num_runs_gpu": 5,
+    "max_tokens_cpu": 50,
+    "max_tokens_gpu": 100
+  },
+  "notes": "On Apple Silicon, CPU can outperform MPS for small models. NVIDIA GPU would show higher GPU throughput."
+}
+

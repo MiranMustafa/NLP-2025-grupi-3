@@ -1,0 +1,22 @@
+{
+  "evaluation_date": "2025-12-13",
+  "dataset": "data/sample_stories.json",
+  "num_samples": 50,
+  "models": {
+    "gpt2_base": {
+      "model_path": "gpt2",
+      "perplexity": 41.12,
+      "safe_ratio": 1.00,
+      "bias_ratio": 0.00
+    },
+    "gpt2_finetuned_writing_prompts": {
+      "model_path": "models/finetuned-writing_prompts/final",
+      "perplexity": 35.30,
+      "safe_ratio": 1.00,
+      "bias_ratio": 0.00,
+      "improvement_ppl": "14% lower (better)"
+    }
+  },
+  "notes": "Perplexity computed on local dataset. Safety/bias use regex-only filters (Detoxify disabled for reproducibility)."
+}
+
