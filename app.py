@@ -339,10 +339,10 @@ def create_interface():
                 choices=model_choices,
                 value=default_model,
                 label="🤖 Select Model (applies to all features)",
-                info="Choose base GPT-2 or fine-tuned models",
-                scale=3
+                info="Choose base GPT-2 or fine-tuned models"
             )
-            model_status = gr.Markdown(f"**Current**: {available_models.get(default_model, default_model)}", scale=2)
+        
+        model_status = gr.Markdown(f"**Current**: {available_models.get(default_model, default_model)}")
         
         # Update status when model changes
         def update_model_status(model):
