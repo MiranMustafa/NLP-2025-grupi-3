@@ -33,28 +33,58 @@ from src.ethical_filter import EthicalFilter
 # Global storyteller instance (initialized on first use)
 storyteller = None
 safety_filter = None
+current_model_name = None
+
+# Available base models
+BASE_MODELS = {
+    "gpt2": "GPT-2 (124M) - Fast, good quality",
+    "gpt2-medium": "GPT-2 Medium (355M) - Better quality",
+    "gpt2-large": "GPT-2 Large (774M) - Best quality, slower",
+    "distilgpt2": "DistilGPT-2 (82M) - Fastest inference",
+}
+
+# Fine-tuned model paths
+FINETUNED_MODELS = {
+    "models/finetuned-writing_prompts/final": "Fine-tuned: Writing Prompts (Creative)",
+    "models/finetuned-tiny_stories/final": "Fine-tuned: Tiny Stories (Simple)",
+    "models/finetuned-fairy_tales/final": "Fine-tuned: Fairy Tales (Classic)",
+    "models/finetuned-storyteller/final": "Fine-tuned: Local Dataset (Custom)",
+}
 
 
-def get_storyteller():
-    """Get or initialize the storyteller."""
-    global storyteller
-    if storyteller is None:
-        print("🔄 Loading model... (this may take a moment)")
-        
-        # Use fine-tuned model if available, otherwise use base GPT-2
-        import os
-        # finetuned_path = "models/finetuned-fairy_tales/final"
-        # finetuned_path = "models/finetuned-storyteller/final"
-        # finetuned_path = "models/finetuned-tiny_stories/final"
-        finetuned_path = "models/finetuned-writing_prompts/final"
+def get_available_models():
+    """Get list of available models (base + existing fine-tuned)."""
+    models = {}
+    
+    # Add base models
+    for model_id, description in BASE_MODELS.items():
+        models[model_id] = description
+    
+    # Add fine-tuned models that exist
+    for model_path, description in FINETUNED_MODELS.items():
+        if os.path.exists(model_path):
+            models[model_path] = description
+    
+    return models
 
-        
-        if os.path.exists(finetuned_path):
-            model_name = finetuned_path
-            print(f"📚 Using fine-tuned model: {finetuned_path}")
-        else:
+
+def get_storyteller(model_name: str = None):
+    """Get or initialize the storyteller with the specified model."""
+    global storyteller, current_model_name
+    
+    # Default model selection
+    if model_name is None:
+        # Try to use a fine-tuned model by default
+        for path in FINETUNED_MODELS.keys():
+            if os.path.exists(path):
+                model_name = path
+                break
+        if model_name is None:
             model_name = "gpt2"
-            print("📚 Using base GPT-2 (no fine-tuned model found)")
+    
+    # Reinitialize if model changed
+    if storyteller is None or current_model_name != model_name:
+        print(f"🔄 Loading model: {model_name}... (this may take a moment)")
         
         storyteller = EthicalStoryTeller(
             model_name=model_name,
@@ -62,7 +92,9 @@ def get_storyteller():
             enable_bias_detection=True,
             strict_mode=True
         )
-        print("✅ Model loaded!")
+        current_model_name = model_name
+        print(f"✅ Model loaded: {model_name}")
+    
     return storyteller
 
 
@@ -85,6 +117,7 @@ def get_safety_filter():
 def generate_story(
     prompt: str,
     genre: str,
+    model_choice: str,
     max_length: int,
     temperature: float,
     top_p: float,
@@ -92,7 +125,7 @@ def generate_story(
 ):
     """Generate a story with the given parameters."""
     try:
-        st = get_storyteller()
+        st = get_storyteller(model_choice)
         
         # Handle genre selection
         genre_value = genre if genre != "None (Custom Prompt)" else None
@@ -296,6 +329,25 @@ def create_interface():
             with gr.TabItem("📖 Generate Story"):
                 with gr.Row():
                     with gr.Column(scale=1):
+                        # Model selection dropdown
+                        available_models = get_available_models()
+                        model_choices = list(available_models.keys())
+                        model_labels = [f"{available_models[m]}" for m in model_choices]
+                        
+                        # Default to first fine-tuned model if available
+                        default_model = model_choices[0]
+                        for m in model_choices:
+                            if m.startswith("models/"):
+                                default_model = m
+                                break
+                        
+                        model_dropdown = gr.Dropdown(
+                            choices=model_choices,
+                            value=default_model,
+                            label="🤖 Select Model",
+                            info="Choose base GPT-2 or fine-tuned models"
+                        )
+                        
                         genre_dropdown = gr.Dropdown(
                             choices=[
                                 "None (Custom Prompt)",
@@ -373,6 +425,7 @@ def create_interface():
                     inputs=[
                         prompt_input,
                         genre_dropdown,
+                        model_dropdown,
                         max_length,
                         temperature,
                         top_p,
@@ -477,13 +530,26 @@ def create_interface():
                     outputs=safety_output
                 )
         
+        # Model info section
+        with gr.Accordion("📚 Available Models", open=False):
+            model_info = "### Base Models\n"
+            for model_id, desc in BASE_MODELS.items():
+                model_info += f"- **{model_id}**: {desc}\n"
+            
+            model_info += "\n### Fine-tuned Models\n"
+            for model_path, desc in FINETUNED_MODELS.items():
+                status = "✅ Available" if os.path.exists(model_path) else "❌ Not found"
+                model_info += f"- **{desc}**: {status}\n"
+            
+            gr.Markdown(model_info)
+        
         gr.Markdown("""
         ---
         
         ### 📚 About This Project
         
         This is an NLP course project demonstrating ethical AI storytelling with:
-        - **GPT-2** pretrained language model
+        - **GPT-2** pretrained language models (base and fine-tuned variants)
         - **Detoxify** for toxicity detection
         - **Custom bias detection** algorithms
         - **Attention visualization** for explainability
