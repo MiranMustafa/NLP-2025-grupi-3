@@ -1,0 +1,30 @@
+{
+  "metadata": {
+    "export_date": "2025-12-13T15:12:35.177590",
+    "total_samples": 20,
+    "model_used": "models/finetuned-writing_prompts/final"
+  },
+  "safety_metrics": {
+    "safe_ratio": 1.0,
+    "safe_count": 20,
+    "unsafe_count": 0
+  },
+  "bias_metrics": {
+    "bias_ratio": 0.0,
+    "biased_count": 0,
+    "unbiased_count": 20
+  },
+  "content_ratings": {
+    "mild": 15,
+    "safe": 5
+  },
+  "genre_distribution": {
+    "fantasy": 4,
+    "sci-fi": 4,
+    "mystery": 3,
+    "adventure": 3,
+    "romance": 3,
+    "horror": 3
+  },
+  "average_confidence": 0.7375
+}
